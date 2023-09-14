@@ -1,0 +1,5 @@
+C:\Projects\CreditWorks Test App\backend\DataModels\obj\Debug\netcoreapp2.1\DataModels.csproj.AssemblyReference.cache
+C:\Projects\CreditWorks Test App\backend\DataModels\obj\Debug\netcoreapp2.1\DataModels.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\CreditWorks Test App\backend\DataModels\obj\Debug\netcoreapp2.1\DataModels.AssemblyInfoInputs.cache
+C:\Projects\CreditWorks Test App\backend\DataModels\obj\Debug\netcoreapp2.1\DataModels.AssemblyInfo.cs
+C:\Projects\CreditWorks Test App\backend\DataModels\obj\Debug\netcoreapp2.1\DataModels.csproj.CoreCompileInputs.cache

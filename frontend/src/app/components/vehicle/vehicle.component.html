@@ -1,0 +1,150 @@
+<div class="container">
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <!-- Owner -->
+                <th (click)="sort('name')">Owner
+                    <!-- Sort -->
+                    <app-sort-icon [order]="order" [field]="'name'"></app-sort-icon>
+                </th>
+
+                <!-- Manufacturer -->
+                <th (click)="sort('manufacturer')">Manufacturer
+                    <!-- Sort -->
+                    <app-sort-icon [order]="order" [field]="'manufacturer'"></app-sort-icon>
+                </th>
+
+                <!-- Year Model -->
+                <th (click)="sort('yearModel')">Year Model
+                    <!-- Sort -->
+                    <app-sort-icon [order]="order" [field]="'yearModel'"></app-sort-icon>
+                </th>
+
+                <!-- Weight(Kg) -->
+                <th (click)="sort('weight')">Weight(Kg)
+                    <!-- Sort -->
+                    <app-sort-icon [order]="order" [field]="'weight'"></app-sort-icon>
+                </th>
+
+                <!-- Actions -->
+                <th>
+                    <mat-icon
+                        aria-hidden="false"
+                        aria-label="Add icon"
+                        fontIcon="add_box"
+                        (click)="editing = 'Add'">
+                </mat-icon>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let vehicle of vehicles; let itemIndex = index;">
+                <!-- Owner -->
+                <td>
+                    {{vehicle.name}}{{(editing === itemIndex ? ' (Editing)' : '')}}
+                </td>
+
+                <!-- Manufacturer-->
+                <td>
+                    {{vehicle.manufacturer}}
+                </td>
+
+                <!-- Year -->
+                <td>
+                    {{vehicle.yearModel}}
+                </td>
+
+                <!-- Weight -->
+                <td>
+                    <!-- Weight Amount -->
+                    {{vehicle.weight}}  
+                    
+                    <!-- Category Icon -->
+                    <mat-icon
+                        aria-hidden="false"
+                        aria-label="Edit icon"
+                        style="margin-bottom: -10px;"
+                        fontIcon="{{getVehicleCategoryIcon(vehicle)}}">
+                    </mat-icon>                
+                </td>
+
+                <!-- Actions -->
+                <td>
+                    <!-- Edit -->
+                    <mat-icon
+                        aria-hidden="false"
+                        aria-label="Edit icon"
+                        fontIcon="edit"
+                        (click)="editItem(vehicle, itemIndex)">
+                    </mat-icon>
+                    
+                    <!-- Delete -->
+                    <mat-icon
+                        aria-hidden="false"
+                        aria-label="Delete icon"
+                        fontIcon="delete"
+                        (click)="deleteItem(vehicle)">
+                    </mat-icon>
+                </td>
+            </tr>
+            <tr *ngIf="!vehicles || vehicles.length === 0">
+                <td colspan="5">No vehicles saved</td>
+            </tr>
+        </tbody>
+        
+    </table>
+
+    <div *ngIf="editing !== false">
+        <form>
+            <!-- Owner Name -->
+            <div class="form-group">
+              <label for="owner">Owner</label>
+              <input
+                type="text"
+                class="form-control"
+                name="owner"
+                [(ngModel)]="vehicleItem.name"
+                placeholder="Enter name of owner">
+              <small id="ownerHelp" class="form-text text-muted">Full name of the person owning the vehicle</small>
+            </div>
+    
+            <!-- Manufacturer -->
+            <div class="form-group">
+                <label for="manufacturerSelect">Manufacturer</label>
+                <select
+                    class="form-control"
+                    [(ngModel)]="vehicleItem.manufacturer"
+                    name="manufacturerSelect">
+                  <option *ngFor="let manufacturer of manufacturers">{{manufacturer.name}}</option>
+                </select>
+            </div>
+    
+            <!-- Year -->
+            <div class="form-group">
+                <label for="year">Year</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="year"
+                    [(ngModel)]="vehicleItem.yearModel"
+                    placeholder="Enter year of manufacture">
+                <small id="yearHelp" class="form-text text-muted">Year that the vehicle was manufactured in</small>
+            </div>
+    
+            <!-- Weight -->
+            <div class="form-group">
+                <label for="weight">Weight (Kg)</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name="weight"
+                    [(ngModel)]="vehicleItem.weight"
+                    placeholder="Weight of the vehicle">
+                <small id="yearHelp" class="form-text text-muted">Weight of the vehicle in Kilograms</small>
+            </div>
+    
+            <button type="submit" (click)="saveItem()" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+
+
+</div>

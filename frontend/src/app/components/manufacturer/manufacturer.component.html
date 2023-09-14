@@ -1,0 +1,73 @@
+<div class="container">
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <!-- Name -->
+                <th (click)="sort('name')">Manufacturer
+                    <!-- Sort -->
+                    <app-sort-icon [order]="order" [field]="'name'"></app-sort-icon>
+                </th>
+                
+                <!-- Add -->
+                <th>
+                    <mat-icon
+                        aria-hidden="false"
+                        aria-label="Add icon"
+                        fontIcon="add_box"
+                        (click)="editing = 'Add'">
+                    </mat-icon>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let manufacturer of manufacturers; let itemIndex = index">
+                <td>{{manufacturer.name}} {{(editing === itemIndex ? ' (Editing)' : '')}}</td>
+                <td>
+                    <!-- Edit -->
+                    <mat-icon
+                        aria-hidden="false"
+                        aria-label="Edit icon"
+                        fontIcon="edit"
+                        (click)="editItem(manufacturer, itemIndex)">
+                    </mat-icon>
+                    
+                    <!-- Delete -->
+                    <mat-icon
+                        aria-hidden="false"
+                        aria-label="Delete icon"
+                        fontIcon="delete"
+                        (click)="deleteItem(manufacturer)">
+                    </mat-icon>
+                </td>
+            </tr>
+
+            <!-- No data -->
+            <tr *ngIf="!manufacturers || manufacturers.length === 0">
+                <td colspan="2">No manufacturers saved</td>
+            </tr>
+        </tbody>
+        
+    </table>
+
+    <div *ngIf="editing !== false">
+        <!-- Add/Edit -->
+        <form>
+            <!-- Manufacturer Name -->
+            <div class="form-group">
+              <label for="manufacturerInput">Manufacturer</label>
+              <input
+                type="text"
+                [(ngModel)]="manufacturerItem.name"
+                class="form-control"
+                name="manufacturerInput"
+                placeholder="Enter name of manufacturer">
+              <small id="manufacturerHelp" class="form-text text-muted">Name of the manufacturing company</small>
+            </div>
+    
+            <button type="submit" (click)="saveItem()" class="btn btn-primary">Save</button>
+        </form>
+
+    </div>
+
+
+</div>

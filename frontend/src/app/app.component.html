@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="row flex-nowrap">
+    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+          
+        <!-- Menu -->
+        <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <mat-icon aria-hidden="false" aria-label="Car icon" fontIcon="home"></mat-icon> <span class="fs-5 d-none d-sm-inline">Home</span>
+        </a>
+        
+        <!-- List -->
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+              
+            <!-- Vehicles -->
+            <li>
+              <a href="vehicles">
+                <mat-icon aria-hidden="false" aria-label="Car icon" fontIcon="directions_car" style="padding-top: 3px;"></mat-icon> <span class="ms-1 d-none d-sm-inline" style="font-size: 20px;"><strong>Vehicles</strong></span>
+              </a>
+            </li>
+
+            <!-- Manufacturers -->
+            <li>
+              <a href="manufacturers">
+                <mat-icon aria-hidden="false" aria-label="Business icon" fontIcon="business" style="padding-top: 3px;"></mat-icon> <span class="ms-1 d-none d-sm-inline" style="font-size: 18px;"><strong>Manufacturers</strong></span>
+              </a>
+            </li>
+
+            <!-- Categories -->
+            <li>
+              <a href="categories">
+                <mat-icon aria-hidden="false" aria-label="Category icon" fontIcon="scale" style="padding-top: 3px;"></mat-icon> <span class="ms-1 d-none d-sm-inline" style="font-size: 19px;"><strong>Categories</strong></span>
+              </a>
+            </li>
+
+          </ul>
+
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="col py-3" style="background-color: darkgray;">
+        <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>

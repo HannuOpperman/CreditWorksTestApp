@@ -1,0 +1,130 @@
+<div class="container">
+    <table class="table table-dark table-hover">
+        <thead>
+            <tr>
+                <!-- Name -->
+                <th (click)="sort('name')">Category Name
+                    <!-- Sort -->
+                    <app-sort-icon [order]="order" [field]="'name'"></app-sort-icon>
+                </th>
+
+                <!-- Weight -->
+                <th (click)="sort('weight')">Weight
+                    <!-- Sort -->
+                    <app-sort-icon [order]="order" [field]="'weight'"></app-sort-icon>
+                </th>
+
+                <!-- Icon -->
+                <th>Icon</th>
+
+                <!-- Actions -->
+                <th>
+                    <mat-icon
+                        aria-hidden="false"
+                        aria-label="Add icon"
+                        fontIcon="add_box"
+                        (click)="editing = 'Add'">
+                    </mat-icon>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Has data -->
+            <tr *ngFor="let category of categories; let itemIndex = index">
+                <!-- Name -->
+                <td>{{category.name}} {{(editing === itemIndex ? ' (Editing)' : '')}}</td>
+                
+                <!-- Weight -->
+                <td> > {{category.weight}} Kg </td>
+                
+                <!-- Icon -->
+                <td>
+                    <mat-icon
+                        aria-hidden="false"
+                        aria-label="Category icon"
+                        [fontIcon]="category.icon">
+                    </mat-icon>
+                </td>
+                
+                <!-- Actions -->
+                <td>
+                    <!-- Edit -->
+                    <mat-icon
+                        aria-hidden="false"
+                        aria-label="Edit icon"
+                        fontIcon="edit"
+                        (click)="editItem(category, itemIndex)">
+                    </mat-icon>
+                    
+                    <!-- Delete -->
+                    <mat-icon
+                        aria-hidden="false"
+                        aria-label="Delete icon"
+                        fontIcon="delete"
+                        (click)="deleteItem(category)">
+                    </mat-icon>
+                </td>
+            </tr>
+            
+            <!-- No data -->
+            <tr *ngIf="!categories || categories.length === 0">
+                <td colspan="3">No categories saved</td>
+            </tr>
+        </tbody>
+        
+    </table>
+
+    <div *ngIf="editing !== false">
+        
+        <!-- Add/Edit -->
+        <form>
+            <!-- Category Name -->
+            <div class="form-group">
+              <label for="categoryName">Category Name</label>
+              <input type="text" class="form-control" [(ngModel)]="categoryItem.name" name="categoryName" placeholder="Enter name of the category">
+              <small id="categoryNameHelp" class="form-text text-muted">Name of the weight classification category</small>
+            </div>
+
+            <!-- Weight -->
+            <div class="form-group">
+                <label for="weight">Weight</label>
+                <input type="text" class="form-control" [(ngModel)]="categoryItem.weight" name="weight" placeholder="Enter starting weight of category">
+                <small id="weightHelp" class="form-text text-muted">Weight starting point of the category</small>
+            </div>
+
+            <!-- Icon selection -->
+            <div class="form-group">
+                <label for="iconSelect">Icon</label>
+                <select
+                    class="form-control"
+                    [(ngModel)]="categoryItem.icon"
+                    name="iconSelect">
+                    <option *ngFor="let icon of icons; let i = index;">
+                        {{icon}}
+                    </option>
+                </select>
+            </div>
+
+            <br>
+
+            <!-- Selected Icon -->
+            <div class="form-group" *ngIf="categoryItem.icon">
+                <label for="iconSelect">Selected Icon</label>
+                <div>
+                    <mat-icon
+                        aria-hidden="false"
+                        aria-label="Category icon"
+                        [fontIcon]="categoryItem.icon">
+                    </mat-icon>
+                </div>
+            </div>
+
+            <br>
+
+            <!-- Save Button -->
+            <button type="submit" (click)="saveItem()" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+
+
+</div>
